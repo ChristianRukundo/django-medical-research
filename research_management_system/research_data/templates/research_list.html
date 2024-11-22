@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Research list - Medical Research management System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/research_page.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Medical Research list</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'research_projects_list' %}">Research Data</a></li>
+                <li><a href="{% url 'dashboard' %}">Analytics</a></li>
+                   <li><a href="{% url 'user_view' %}">Users</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <button class="create-user-btn" onclick="location.href='{% url 'create_research_project' %}'">Create Project</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Field</th>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Author</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if research_projects %}
+                    {% for project in research_projects %}
+                        <tr>
+                            <td>{{ project.title }}</td>
+                            <td>{{ project.field }}</td>
+                            <td>{{ project.location }}</td>
+                            <td>{{ project.date }}</td>
+                            <td>{{ project.user.username }}</td>
+                            <td>
+                                <a href="{% url 'update_research_project' project.pk %}">Edit</a> |
+                                <a href="{% url 'delete_research_project' project.pk %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6">No research projects found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2024 Medical Research management System</p>
+    </footer>
+</body>
+</html>

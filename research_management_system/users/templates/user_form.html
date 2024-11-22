@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Research management System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/user_page.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{% if form.instance.pk %}Update{% else %}Register{% endif %} User</h1>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Research Data</a></li>
+                <li><a href="{% url 'dashboard' %}">Analytics</a></li>
+                <li><a href="">Users</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form method="POST" action="{% url 'create_user' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+            {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+    <div>
+        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+    </div>
+    <div>
+        <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+    </div>
+    <div>
+        <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+    </div>
+    <div>
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+    </div>
+    <div>
+        <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+    </div>
+
+    <button type="submit" class="create-user-btn">{% if form.instance.pk %}Update{% else %}Register{% endif %} User</button>
+            <a href="http://127.0.0.1:8000/accounts/login/">Already have an account</a>
+</form>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Medical Research management System</p>
+    </footer>
+</body>
+</html>

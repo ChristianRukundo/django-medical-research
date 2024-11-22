@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - Medical Research management System</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/user_page.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Users Management</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'research_projects_list' %}">Research Data</a></li>
+                <li><a href="{% url 'dashboard' %}">Analytics</a></li>
+                <li><a href="{% url 'user_view' %}">Users</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Manage Users</h2>
+            <p>Here you can view and manage users of the Medical Research management System.</p>
+            <button class="create-user-btn" onclick="location.href='{% url 'create_user' %}'">Create User</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.is_staff|yesno:"Admin,User" }}</td>
+                        <td>
+                            <a href="http://127.0.0.1:8000/users/{{ user.id }}/update">Edit</a> |
+                            <a href="http://127.0.0.1:8000/users/{{ user.id }}/delete">Delete</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No users found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Medical Research management System</p>
+    </footer>
+</body>
+</html>

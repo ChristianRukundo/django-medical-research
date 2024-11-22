@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Research management System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/user_page.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="">Research Data</a></li>
+                <li><a href="">Reports</a></li>
+                <li><a href="">Users</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+            <ul class="messages">
+        {% for message in messages %}
+            <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div>
+        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+    </div>
+    <div>
+        <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+    </div>
+    <div>
+        <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+    </div>
+    <div>
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+    </div>
+    <div>
+        <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+    </div>
+
+    <button type="submit" class="create-user-btn">Submit</button>
+</form>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Medical Research management System</p>
+    </footer>
+</body>
+</html>

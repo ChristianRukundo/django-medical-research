@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Research management System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/research_page.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{% if form.instance.pk %}Update{% else %}Create{% endif %} Research Project</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'research_projects_list' %}">Research Data</a></li>
+                <li><a href="{% url 'dashboard' %}">Analytics</a></li>
+                <   <li><a href="{% url 'user_view' %}">Users</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form method="POST" action="{% if form.instance.pk %}{% url 'update_research_project' form.instance.pk %}{% else %}{% url 'create_research_project' %}{% endif %}">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div>
+                <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+                {{ form.title }}
+                {{ form.title.errors }}
+            </div>
+            <div>
+                <label for="{{ form.field.id_for_label }}">{{ form.field.label }}</label>
+                {{ form.field }}
+                {{ form.field.errors }}
+            </div>
+            <div>
+                <label for="{{ form.location.id_for_label }}">{{ form.location.label }}</label>
+                {{ form.location }}
+                {{ form.location.errors }}
+            </div>
+            <div>
+                <label for="{{ form.date.id_for_label }}">{{ form.date.label }}</label>
+                {{ form.date }}
+                {{ form.date.errors }}
+            </div>
+            <div>
+                <label for="{{ form.summary.id_for_label }}">{{ form.summary.label }}</label>
+                {{ form.summary }}
+                {{ form.summary.errors }}
+            </div>
+
+            <button type="submit" class="create-user-btn">{% if form.instance.pk %}Update{% else %}Create{% endif %} Research Project</button>
+            <a href="{% url 'research_projects_list' %}">Back to Medical Research list</a>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Medical Research management System</p>
+    </footer>
+</body>
+</html>

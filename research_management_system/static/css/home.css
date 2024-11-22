@@ -1,0 +1,173 @@
+  /* Reset some default styles */
+body, h1, h2, p, table, th, td {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set body styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2b2d42;
+    color: #edf2f4;
+    line-height: 1.6;
+}
+
+/* Header styles */
+header {
+    background-color: #8d99ae;
+    color: #edf2f4;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Header title */
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #edf2f4;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #ef233c;
+    color: #fff;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+    background-color: #edf2f4;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    color: #2b2d42;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #ef233c;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #e2e6ea;
+}
+
+/* Button styles */
+button, .btn {
+    background-color: #ef233c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #d90429;
+    transform: scale(1.05);
+}
+
+button:active, .btn:active {
+    transform: scale(0.95);
+}
+
+button.cancel {
+    background-color: #8d99ae;
+    color: #fff;
+}
+
+button.cancel:hover {
+    background-color: #6c757d;
+}
+
+/* Footer styles */
+footer {
+    background-color: #8d99ae;
+    color: #edf2f4;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Allow the main content to take up the available space */
+main {
+    flex: 1; /* This pushes the footer down */
+}
+
+/* Footer styling */
+footer {
+    background-color: #8d99ae;
+    color: #edf2f4;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
