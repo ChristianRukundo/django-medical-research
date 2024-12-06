@@ -24,7 +24,7 @@ def login_view(request):
 
         print(f"Username: {username}, Password: {password}")
 
-        # Authenticate the user
+
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
@@ -63,16 +63,16 @@ def create_user(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
 
-            # messages.success(request, 'User created successfully!')
+            messages.success(request, 'User created successfully!')
             return redirect('user_view')
     else:
         form = UserForm()
 
-    return render(request, 'user_form.html', {'form': form})  # Ensure t
+    return render(request, 'user_form.html', {'form': form})
 
 
 def user_update(request, pk):
-    user = get_object_or_404(CustomUser, pk=pk)  # Fetch the user based on the primary key
+    user = get_object_or_404(CustomUser, pk=pk)
     if request.method == "POST":
         form = UserForm(request.POST, instance=user)
         if form.is_valid():

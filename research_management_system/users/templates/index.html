@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users - Medical Research management System</title>
+    <title>Users - Research Management System</title>
     {% load static %}
+
 
     <link rel="stylesheet" href="{% static 'css/user_page.css' %}">
 </head>
@@ -13,8 +14,8 @@
         <h1>Users Management</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'research_projects_list' %}">Research Data</a></li>
+             <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'view_research_projects' %}">Research Data</a></li>
                 <li><a href="{% url 'dashboard' %}">Analytics</a></li>
                 <li><a href="{% url 'user_view' %}">Users</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -24,7 +25,7 @@
     <main>
         <section>
             <h2>Manage Users</h2>
-            <p>Here you can view and manage users of the Medical Research management System.</p>
+            <p>Here you can view and manage users of the Research Management System.</p>
             <button class="create-user-btn" onclick="location.href='{% url 'create_user' %}'">Create User</button>
             <table>
                 <thead>
@@ -58,7 +59,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Medical Research management System</p>
+        <p>&copy; 2024 Research Management System</p>
     </footer>
 </body>
 </html>

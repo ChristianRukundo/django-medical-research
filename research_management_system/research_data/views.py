@@ -1,3 +1,5 @@
+from django.core import serializers
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import ResearchProject, ResearchData
@@ -17,6 +19,7 @@ def view_research_projects(request):
     research_projects = ResearchProject.objects.filter(user=request.user)
     return render(request, 'research_list.html', {'research_projects': research_projects})
 
+
 @login_required
 def create_research_project(request):
     if request.method == 'POST':
@@ -26,11 +29,22 @@ def create_research_project(request):
             research_project.user = request.user
             research_project.save()
             messages.success(request, 'Research project created successfully!')
-            return redirect('research_projects_list')
+            return redirect('view_research_projects')
     else:
         form = ResearchProjectForm()
     return render(request, 'research_form.html', {'form': form})
 
+
+# @login_required
+# def project_data(request):
+#     user = request.user
+#     user_projects = ResearchProject.objects.filter(user=user)
+#
+#     # Serialize the data to JSON using Django's serializers
+#     projects_data = serializers.serialize('json', user_projects)
+#
+#     return JsonResponse(projects_data, safe=False, content_type='application/json')
+#
 
 @login_required
 def update_research_project(request, pk):
@@ -40,18 +54,17 @@ def update_research_project(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, 'Research project updated successfully!')
-            return redirect('view_research_projects')
+            return redirect('projects')
     else:
         form = ResearchProjectForm(instance=research_project)
     return render(request, 'research_form.html', {'form': form})
 
-# Delete a research project
+
 @login_required
 def delete_research_project(request, pk):
     research_project = get_object_or_404(ResearchProject, pk=pk, user=request.user)
     if request.method == 'POST':
         research_project.delete()
         messages.success(request, 'Research project deleted successfully!')
-        return redirect('research_projects_list')
+        return redirect('projects')
     return render(request, 'research_confirm_delete.html', {'research_project': research_project})
-

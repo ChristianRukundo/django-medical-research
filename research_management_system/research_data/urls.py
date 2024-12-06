@@ -9,5 +9,6 @@ urlpatterns = [
     path('create/', views.create_research_project, name='create_research_project'),
     path('update/<int:pk>/', views.update_research_project, name='update_research_project'),
     path('delete/<int:pk>/', views.delete_research_project, name='delete_research_project'),
-    path('projects/', views.view_research_projects, name='research_projects_list'),
+    path('projects/', views.view_research_projects, name='view_research_projects'),
+    # path('projects/json/', views.project_data, name='project_data')
 ]

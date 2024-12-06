@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'research_management_system.wsgi.application'
 # Database configuration (Using PostgreSQL)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'research_management_',  # Change this to your database name
-        'USER': 'postgres',  # PostgreSQL username
-        'PASSWORD': '$password123',  # PostgreSQL password
-        'HOST': 'localhost',  # PostgreSQL host (e.g., 'localhost' for local dev)
-        'PORT': '5432',  # PostgreSQL port (default is 5432)
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'medical_research',
+        'USER': 'postgres',
+        'PASSWORD': '$password123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

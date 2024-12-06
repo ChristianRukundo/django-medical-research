@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Research management System</title>
+    <title>Research Management System</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/research_page.css' %}">
 </head>
@@ -12,10 +12,10 @@
         <h1>{% if form.instance.pk %}Update{% else %}Create{% endif %} Research Project</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'research_projects_list' %}">Research Data</a></li>
+                       <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'view_research_projects' %}">Research Data</a></li>
                 <li><a href="{% url 'dashboard' %}">Analytics</a></li>
-                <   <li><a href="{% url 'user_view' %}">Users</a></li>
+                   <li><a href="{% url 'user_view' %}">Users</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </nav>
@@ -60,11 +60,11 @@
             </div>
 
             <button type="submit" class="create-user-btn">{% if form.instance.pk %}Update{% else %}Create{% endif %} Research Project</button>
-            <a href="{% url 'research_projects_list' %}">Back to Medical Research list</a>
+            <a href="">Back to Research List</a>
         </form>
     </main>
     <footer>
-        <p>&copy; 2024 Medical Research management System</p>
+        <p>&copy; 2024 Research Management System</p>
     </footer>
 </body>
 </html>

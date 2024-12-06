@@ -3,10 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete User - Medical Research management System</title>
+    <title>Delete User - Research Management System</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/user_page.css' %}">
 </head>
+<style>/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 1.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffc107;
+    transform: scale(1.1);
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Button styles */
+button.create-user-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+button.create-user-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button.create-user-btn:active {
+    background-color: #004085;
+}
+
+/* Table Styling */
+.table-wrapper {
+    overflow-x: auto;
+    margin-top: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+thead th {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+td, th {
+    padding: 0.8rem;
+    border: 1px solid #dee2e6;
+    font-size: 1rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #343a40;
+    color: white;
+    margin-top: 3rem;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+form div {
+    margin-bottom: 1rem;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+form input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #495057;
+}
+
+form input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Confirmation Box */
+.confirmation-box {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.confirmation-box p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.confirmation-box .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.confirmation-box .btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.confirmation-box .btn.confirm {
+    background-color: #28a745;
+}
+
+.confirmation-box .btn.confirm:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.confirmation-box .btn.cancel {
+    background-color: #dc3545;
+}
+
+.confirmation-box .btn.cancel:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    td {
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        padding-left: 1rem;
+        font-weight: bold;
+    }
+}
+</style>
 <body>
     <header>
         <h1>Delete User</h1>
@@ -32,7 +305,7 @@
         </div>
     </main>
     <footer>
-        <p>&copy; 2024 Medical Research management System</p>
+        <p>&copy; 2024 Research Management System</p>
     </footer>
 </body>
 </html>
